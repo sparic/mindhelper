@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="application.properties"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="${mapper.plugin}">
+            <property name="mappers" value="${mapper.mappers}"/>
+        </plugin>
+
+        <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
+                        connectionURL="${spring.datasource.url}"
+                        userId="${spring.datasource.username}"
+                        password="${spring.datasource.password}">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.fuyuda.user.User" targetProject="${targetDomainProject}"/>
+
+        <sqlMapGenerator targetPackage="mybatis"  targetProject="${targetcoMapperResource}"/>
+
+        <javaClientGenerator targetPackage="com.fuyuda.mapper" targetProject="${targetMapperProject}" type="XMLMAPPER" />
+
+        <table tableName="USER" domainObjectName="User">
+        </table>
+        <table tableName="BLOG" domainObjectName="Blog">
+        </table>
+    </context>
+</generatorConfiguration>
